@@ -1,0 +1,147 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <br>
+    <div id="recipe-title-container">
+        <h1 id="recipe-title" style="color: #FFDAB9; -webkit-text-stroke: 0.3px gray; text-stroke: 0.3px gray;">
+            New Recipe <i id="edit-icon" class="fas fa-edit" style = "font-size: 40%; color: gray;"></i>
+        </h1>
+    </div>
+    <form action="/new_recipe" method="POST">
+
+        <br>
+        <div class="row">
+            <div class="col">
+                <input type="hidden" id="recipe-title-input" name="name" value="New Recipe" required>
+                <div id="description-container">
+                    <input class="description-input form-control" type="text" name="description" placeholder="Description" autocomplete="off" required>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id="ingredient-container">
+                    <input class="ingredient-input form-control" type="text" name="ingredients[0]" placeholder="Ingredients" style="width: 50%;" autocomplete="off" required>
+
+                </div> <br>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-primary" onclick="addIngredient()" style="background-color:#90EE90; border-style: hidden;">Add</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input class="step-input form-control" type="text" id="category" name="category" placeholder="Category" style = "width : 42%" list="categoryOptions"autocomplete="off" >
+                <datalist id="categoryOptions">
+                    <option value="Appetizer">
+                    <option value="Soup/Stew">
+                    <option value="Salad">
+                    <option value="Main Course">
+                    <option value="Side Dish">
+                    <option value="Dessert">
+                    <option value="Bread">
+                    <option value="Beverage">
+                    <option value="Snacks">
+                </datalist>
+            </div>
+        </div>
+        <br><br>
+        <h2 style="color: #FFDAB9; -webkit-text-stroke: 0.3px gray; text-stroke: 0.3px gray;" >Instructions:</h2> <br>
+        <div class="row">
+            <div class="col">
+                <div id="step-container">
+                    <input class="step-input form-control" type="text" name="steps[0]" placeholder="Step 1" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-primary" onclick="addStep()" style="background-color:#90EE90; border-style: hidden;">Add</button>
+            </div>
+        </div>
+        <br>
+
+
+        <div class="row">
+            <div class="col-auto d-flex justify-content-center">
+                <button class="btn btn-primary" type="submit" style="background-color:#90EE90; border-style: hidden;">Save Recipe</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        let ingredientCount = 1;
+        let stepCount = 1;
+
+        function addIngredient() {
+            const ingredientContainer = document.getElementById('ingredient-container');
+
+            const newIngredientInput = document.createElement('input');
+            newIngredientInput.setAttribute('class', 'ingredient-input form-control');
+            newIngredientInput.setAttribute('type', 'text');
+            newIngredientInput.setAttribute('name', `ingredients[${ingredientCount}]`);
+            newIngredientInput.setAttribute('placeholder', `Ingredient ${ingredientCount + 1}`);
+            newIngredientInput.setAttribute('style', 'width: 50%;');
+            newIngredientInput.setAttribute('required', '');
+            newIngredientInput.setAttribute('autocomplete','off');
+
+
+            ingredientContainer.appendChild(newIngredientInput);
+
+            ingredientCount++;
+        }
+
+        function addStep() {
+            const stepContainer = document.getElementById('step-container');
+
+            const newStepInput = document.createElement('input');
+            newStepInput.setAttribute('class', 'step-input form-control');
+            newStepInput.setAttribute('type', 'text');
+            newStepInput.setAttribute('name', `steps[${stepCount}]`);
+            newStepInput.setAttribute('placeholder', `Step ${stepCount + 1}`);
+            newStepInput.setAttribute('required', '');
+            newStepInput.setAttribute('autocomplete','off');
+
+            stepContainer.appendChild(newStepInput);
+
+            stepCount++;
+        }
+
+        // Get the elements
+        const recipeTitleContainer = document.getElementById('recipe-title-container');
+        const recipeTitle = document.getElementById('recipe-title');
+        let editIcon = document.getElementById('edit-icon');
+        const recipeTitleInput = document.getElementById('recipe-title-input');
+
+        // Add click event listener to the edit icon
+        function updateRecipeTitle()
+        {
+        // Get the new title from the user
+        const newTitle = prompt('Recipe Name:');
+        if (newTitle)
+            {
+            // Update the title and input value
+            recipeTitle.innerHTML = newTitle.charAt(0).toUpperCase() + newTitle.slice(1);
+            recipeTitleInput.value = newTitle;
+            let editIcon = document.getElementById('edit-icon');
+            // Attach the event listener to the new edit icon
+            newEditIcon.addEventListener('click', updateRecipeTitle);
+
+            // Append the new edit icon to the recipe title container
+            recipeTitleContainer.appendChild(newEditIcon);
+            // Attach the event listener to the new edit icon
+            editIcon.addEventListener('click', updateRecipeTitle);
+
+            // Append the new edit icon to the recipe title container
+            recipeTitleContainer.appendChild(editIcon);
+            }
+        }
+
+
+        editIcon.addEventListener('click', updateRecipeTitle);
+        // Add submit event listener to the form
+        recipeForm.addEventListener('submit', function () {
+            // Validate the form fields and perform other necessary actions
+            // ...
+        });
+    </script>
+{% endblock %}

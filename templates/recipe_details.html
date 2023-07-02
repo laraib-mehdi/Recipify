@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% block title %}
+Recipe
+{% endblock %}
+{% block content %}
+<br>
+<h1 style = "color:#FFDAB9 ; -webkit-text-stroke: 0.3px black;"> Recipe for <span style = "color:#90EE90 ; -webkit-text-stroke: 0.3px gray;">{{ recipe[2] }} </span>:</h1>
+<p style = "color: grey">{{ recipe[3] }}</p>
+<br> <h3 style = "color:#FFDAB9 ; -webkit-text-stroke: 0.3px black;"> Ingredients :</h3>
+{% for ingredient in ingredients %}
+<ul class="list-group">
+    <li class="list-group-item" style="color: grey; -webkit-text-stroke: 0.3px black;"  onclick= "redirectToWalmart('{{ ingredient[0] }}')">{{ ingredient[0] }}</li>
+</ul>
+{% endfor %}
+
+<br>
+<h3 style = "color:#FFDAB9 ; -webkit-text-stroke: 0.3px black;">Instructions:</h3>
+<br>
+<div class="row">
+  <div class="col-4">
+      <div id="list-example" class="d-flex flex-column gap-2 simple-list-example-scrollspy text-center">
+          {% for step in steps %}
+          <a class="list-group-item list-group-item-action" href="#simple-list-item-{{step[0]}}"  style = "color: black ; -webkit-text-stroke: 0.5px #90EE90;" >Step {{step[0]}}</a>
+          {% endfor %}
+      </div>
+  </div>
+  <div class="col-8">
+      <div data-bs-spy="scroll" data-bs-target="#simple-list-example" data-bs-offset="0" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0"  style="height: 350px; overflow-y: scroll;">
+          {% for step in steps %}
+          <h4 id="simple-list-item-{{step[0]}}" style = "color:#FFDAB9 ; -webkit-text-stroke: 0.3px black;">{{step[0]}}.</h4>
+          <p>{{step[1]}}</p>
+          {% endfor %}
+      </div>
+  </div>
+</div>
+<script>
+  function redirectToWalmart(searchTerm) {
+      var url = 'https://www.walmart.com/search/?query=' + encodeURIComponent(searchTerm);
+      window.open(url, '_blank');
+  }
+</script>
+{% endblock %}
+

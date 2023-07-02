@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block title %}
+Recipes
+{% endblock %}
+{% block content %}
+<br>
+<h2 style="color: #FFDAB9; -webkit-text-stroke: 0.3px black;">{% if recipes %}{{recipes[0][1]}}s{% else %}Recipes{% endif %}:</h2>
+<br>
+
+{% if recipes %}
+    <ul>
+
+        <div class="row">
+            <div class="col-4">
+              <div id="simple-list-example" class="d-flex flex-column gap-2 simple-list-example-scrollspy text-center"> {% for recipe in recipes %}
+                <a class="list-group-item list-group-item-action" style = " background-color:#FFDAB9;border-style: hidden;color: gray;">{{recipe[0]}}</a> {% endfor %}
+              </div>
+            </div>
+            <div class="col-8">
+              <div data-bs-spy="scroll" data-bs-target="#simple-list-example" data-bs-offset="0" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+                {% for recipe in recipes %}
+                <h3 id="{{recipe[0]}}" style = "color:#90EE90 ; -webkit-text-stroke: 0.3px gray;">{{recipe[0]}}</h3>
+                <p style = "color: gray">{{recipe[2]}}</p>
+                <form action="/recipe_details" method="GET">
+                    <input type="hidden" name="name" value="{{recipe[0]}}">
+                    <button class="btn btn-primary btn-sm recipe-button" type="submit" style="display: block; margin-left: 0; background-color:#90EE90; border-style: hidden;">recipe</button><br>
+                </form><br>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+    </ul>
+
+{% else %}
+    <p>No recipes found for the selected category.</p>
+{% endif %}
+
+
+{% endblock %}

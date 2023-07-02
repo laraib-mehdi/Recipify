@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% block title %}
+Categories
+{% endblock %}
+{% block content %}
+<br>
+<h2 style="color: #FFDAB9; -webkit-text-stroke: 0.3px black;">Keep Cooking!</h2>
+<br>
+<div class="form-floating">
+    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+    <option selected>Choose Category</option>
+    {% for recipe in recipes %}
+    <option value="{{recipe[0]}}">{{recipe[0]}}</option>
+    {%endfor%}
+    </select>
+    <label for="floatingSelect">What would you like to cook today?</label>
+  </div>
+  <script>
+    // Get the select element
+    var selectElement = document.getElementById("floatingSelect");
+
+    // Add event listener for selection change
+    selectElement.addEventListener("change", function() {
+        // Get the selected category
+        var selectedCategory = selectElement.value;
+
+        // Redirect to a new page with the selected category as a parameter
+        window.location.href = "/recipes?category=" + selectedCategory;
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+        <form action="/login" method="post">
+
+            <div class="mb-3" style="padding-top: 5%; transform: scale(0.9);">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Enter Username" type="text">
+              </div>
+              <div class="mb-3" style="transform: scale(0.9);">
+                <input class="form-control mx-auto w-auto" name="password" placeholder="Password" type="password">
+              </div>
+
+            <button class="btn btn-primary" type="submit" style = "display: block; margin: 0 auto; background-color:#90EE90; border-style: hidden;">Log In</button>
+        </form>
+{% endblock %}
