@@ -6,48 +6,11 @@ Home
 {% endblock %}
 
 {% block content %}
-<style>
+<link rel="stylesheet" href="style.css">
 
-    table {
-      margin: 0 auto;
-      border: 1px solid #ddd;
-      border-collapse: collapse;
-      width: 80%;
-    }
-
-    th {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-      color: #90EE90;
-      -webkit-text-stroke: 0.3px gray;
-      text-stroke: 0.3px gray;
-    }
-
-    th a {
-      color: #90EE90;
-      text-decoration: none;
-    }
-    tr:hover{
-      background-color: #FFDAB9;
-    }
-    th a:hover {
-      text-decoration: underline;
-    }
-
-    td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-
-    th:nth-child(1), td:nth-child(1) {
-      text-align: center;
-    }
-  </style>
 <main>
   <br>
-    <h2 style="color: #FFDAB9; -webkit-text-stroke: 0.3px gray; text-stroke: 0.3px gray;">Your Recipes -</h2>
+    <h2 class = "peach-h">Your Recipes -</h2>
     <table class="table table-hover">
       <tr>
         <!-- Modify the table headers according to your table structure -->

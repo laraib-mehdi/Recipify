@@ -6,7 +6,7 @@ Recipe
 <br>
 <h1 style = "color:#FFDAB9 ; -webkit-text-stroke: 0.3px black;"> Recipe for <span style = "color:#90EE90 ; -webkit-text-stroke: 0.3px gray;">{{ recipe[2] }} </span>:</h1>
 <p style = "color: grey">{{ recipe[3] }}</p>
-<br> <h3 style = "color:#FFDAB9 ; -webkit-text-stroke: 0.3px black;"> Ingredients :</h3>
+<br> <h3 class = "peach-h"> Ingredients :</h3>
 {% for ingredient in ingredients %}
 <ul class="list-group">
     <li class="list-group-item" style="color: grey; -webkit-text-stroke: 0.3px black;"  onclick= "redirectToWalmart('{{ ingredient[0] }}')">{{ ingredient[0] }}</li>
