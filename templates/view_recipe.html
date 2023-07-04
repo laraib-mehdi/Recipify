@@ -16,17 +16,7 @@ Categories
     <label for="floatingSelect">What would you like to cook today?</label>
   </div>
   <script>
-    // Get the select element
-    var selectElement = document.getElementById("floatingSelect");
-
-    // Add event listener for selection change
-    selectElement.addEventListener("change", function() {
-        // Get the selected category
-        var selectedCategory = selectElement.value;
-
-        // Redirect to a new page with the selected category as a parameter
-        window.location.href = "/recipes?category=" + selectedCategory;
-    });
+  
 </script>
 
 {% endblock %}
