@@ -41,10 +41,11 @@ jobs:
 
       - name: Build the Flask app
         run: |
-          python app.py build
+          export FLASK_APP=app.py
+          flask run --no-reload
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./path/to/your/flask/app/static
+          publish_dir: ./
