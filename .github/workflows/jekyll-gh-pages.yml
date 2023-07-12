@@ -41,8 +41,8 @@ jobs:
 
       - name: Build the Flask app
         run: |
-          export FLASK_APP=app.py
-          flask run --no-reload
+          python -c "from flask_frozen import Freezer; from app import app; freezer = Freezer(app); freezer.freeze()"
+
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
